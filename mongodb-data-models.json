@@ -1,0 +1,94 @@
+// Embedded data model
+// embedded information is related information and used regularly
+// + fewer queries
+
+{
+    "_id": "ObjectId('1')",
+    "username": "sk8er-boi",
+    "contact": {
+      "email": "punkisnotdead@hotmail.com",
+      "phone": 123456789
+    },
+    "access": {
+      "level": 5,
+      "group": "dev"
+    }
+  }
+
+// Normalized data model (references)
+// Useful when embedding wouldn't provide sufficient perfomance advantage
+
+// user document in the user collection
+{
+    "_id": "ObjectId('1')",
+    "username": "sk8er-boi"
+}
+// contact document in the contact collection
+{
+    "_id": "ObjectId('2')",
+    "user_id": "ObjectId('1')",
+    "email": "punkisnotdead@hotmail.com",
+    "phone": 123456789
+}
+// access document in the access collection
+{
+    "_id": "ObjectId('3')",
+    "user_id": "ObjectId('1')",
+    "level": 5,
+    "group": "dev"
+}
+
+One-to-one -> Embedded
+Person - social security details
+// person document in the persons collection
+{
+    "_id" : "ObjectId('1')",
+    "name": "Nathan",
+    "social_security_details": {
+        "social_security_number": 42,
+        "cardExpiryDate": "24/11/2020"
+    }
+    }
+
+One-to-many
+
+Person - addresses -> Embedded
+{
+    "_id": "ObjectId('1')",
+    "person_name": "Julia",
+    "addresses": [
+        {
+            "street": "calle ocho",
+            "city": "Pamplona",
+            "country": "Spain"
+        },
+        {
+            "street": "Eichhornstrasse",
+            "city": "Berlin",
+            "country": "Germany"
+        }
+    ]
+}
+
+Company - employee -> Normalized (references)
+// Company document in the companies collection
+{
+    "_id" : "ObjectId('1')",
+    "company_name": "NathanCorp",
+}
+
+// Employees documents in the employee collection
+{
+    "company_id" : "ObjectId('1')",
+    "name": "Nathan",
+    "role": "CEO"
+}
+{
+    "company_id" : "ObjectId('1')",
+    "name": "Montasar",
+    "role": "CTO"
+}
+
+
+Many-to-many -> Normalized data model
+Company - board members
