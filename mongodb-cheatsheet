@@ -1,0 +1,23 @@
+Simple query:
+
+{ title: 'Inception' }  // returns all movies who are titled Inception
+
+Queries with logical operators:
+
+{$and: [{year: '1995'}, {rate: '8.5}]} // returns all movies from 1995 that have a rating of 8.5
+{$or: [{year: '1995'}, {rate: '8.5}]} // returns all movies either from 1995 or that have a rating of 8.5
+{$nor: [{year: '1995'}, {rate: '8.5}]} // returns all movies that are neither from 1995 nor that have a rating of 8.5
+
+Comparison query operators:
+
+{ title: {$eq: 'Inception'}} // returns all movies who are titled Inception
+{ title: {$ne: 'Inception'}} // returns all movies who are not titled Inception (or not titled)
+{ rate: {$gte: '8.5'}} // returns all movies with a rate of 8.5 or higher
+{ rate: {$gt: '8.5'}} // returns all movies with a rate higher than 8.5
+{ rate: {$lte: '8.5'}} // returns all movies with a rate of 8.5 or lower
+{ rate: {$lt: '8.5'}} // returns all movies with a rate lower than 8.5
+
+
+
+
+
